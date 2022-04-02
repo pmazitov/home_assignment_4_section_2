@@ -43,23 +43,23 @@ class MessengerHandler:
         '''
         return len(self.unique_users) < len(self.unique_users)
     
-    def __add__(self, other):
+    def __or__(self, other):
         '''
         Union
         '''
         return self.unique_users | other.unique_users
-    
+      
+    def __and__(self, other):
+        '''
+        Intersection
+        '''
+        return self.unique_users & other.unique_users    
+
     def __sub__(self, other):
         '''
         Difference
         '''
         return self.unique_users - other.unique_users
-    
-    def __and__(self, other):
-        '''
-        Intersection
-        '''
-        return self.unique_users & other.unique_users
     
     def __eq__(self, other):
         '''
