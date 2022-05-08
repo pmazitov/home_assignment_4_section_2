@@ -44,6 +44,7 @@ class User:
     def __init__(self, user_id_str, phone_str):
         self.user_id = user_id_str
         self.phone_num = self.normalize_phone(phone_str)
+        self.unique_user_id = self.phone_num
         
     def normalize_phone(self, phone):
         phone = phonenumbers.parse(phone, "RU")
@@ -77,7 +78,7 @@ class MessengerHandler:
         unique_users = set()
         for k, v in self.messenger.items():
             cur_users = v['users_in_chat']
-            unique_phone_nums = set(map(lambda x: x.phone_num, cur_users))
+            unique_phone_nums = set(map(lambda x: x.unique_user_id, cur_users))
             self.unique_users |= unique_phone_nums    
         return unique_users
 
